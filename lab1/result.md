@@ -34,3 +34,41 @@ W2:
  [ 17.70976507]
  [ 14.62307097]
 ```
+
+```text
+osu-cse-5526-py3.12(⎈|lab6:group-mitglied) ~/Projects/osu/osu-cse-5526/ [master] python lab1/main.py --learning_rate 0.10 --epochs 5000000
+Input size: 4
+Hidden size: 4
+Output size: 1
+Learning rate: 0.1
+Epochs: 5000000
+100%|████████████████████████████████████████████████████████████████████████████| 5000000/5000000 [07:31<00:00, 11069.35it/s, Cost: 0.0000453713984749]
+Prediction: [[0.00268129]], Actual: [0]
+Prediction: [[0.99720736]], Actual: [1]
+Prediction: [[0.99720726]], Actual: [1]
+Prediction: [[0.00081574]], Actual: [0]
+Prediction: [[0.99725364]], Actual: [1]
+Prediction: [[0.00240209]], Actual: [0]
+Prediction: [[0.00240212]], Actual: [0]
+Prediction: [[0.99760395]], Actual: [1]
+Prediction: [[0.99725412]], Actual: [1]
+Prediction: [[0.00240202]], Actual: [0]
+Prediction: [[0.00240204]], Actual: [0]
+Prediction: [[0.99760366]], Actual: [1]
+Prediction: [[0.00084898]], Actual: [0]
+Prediction: [[0.99752646]], Actual: [1]
+Prediction: [[0.9975265]], Actual: [1]
+Prediction: [[0.00216492]], Actual: [0]
+W1: 
+ [[-65.70121696  59.17988172  -5.63314864   8.94576191]
+ [-65.70144827  59.18011066  -5.63480946   8.97131241]
+ [ 65.67089509 -59.14051637   9.79205045  -5.44957159]
+ [ 65.67085441 -59.14047477   9.78336233  -5.44933802]
+ [  0.51256106   0.44823642  11.01337474  10.29844646]]
+W2: 
+ [[-50.64217733]
+ [-50.67710884]
+ [ 23.20583737]
+ [ 20.35864766]
+ [ 13.11394123]]
+```
