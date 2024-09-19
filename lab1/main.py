@@ -25,7 +25,16 @@ def main():
     hidden_size = 4
     output_size = 1
 
+    # Print size setups
+    print(f"Input size: {input_size}")
+    print(f"Hidden size: {hidden_size}")
+    print(f"Output size: {output_size}")
+
     ############################################################################
+
+    # Print hyperparameters
+    print(f"Learning rate: {args.learning_rate}")
+    print(f"Epochs: {args.epochs}")
 
     # Training
     perceptron = Perceptron(input_size, hidden_size, output_size, sigmoid_pair, cost)
