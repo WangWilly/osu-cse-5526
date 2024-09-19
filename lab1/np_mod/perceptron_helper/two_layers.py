@@ -1,8 +1,8 @@
 import numpy as np
 from tqdm import tqdm
 
-from lab1.activation_funcs.const import SIGMOID_FUNC
-from lab1.cost.mse import COST_FUNC
+from lab1.np_mod.activation_funcs.const import SIGMOID_FUNC
+from lab1.np_mod.cost.mse import COST_FUNC
 
 ################################################################################
 

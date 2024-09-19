@@ -1,9 +1,9 @@
 import argparse
 
-from activation_funcs.sigmoid import acti_pair
-from cost.mse import cost_pair
-from dataset.is_odd import X, Y
-from perceptron_helper.two_layers import Perceptron
+from np_mod.activation_funcs.sigmoid import acti_pair
+from np_mod.cost.mse import cost_pair
+from np_mod.dataset.is_odd import X, Y
+from np_mod.perceptron_helper.two_layers import Perceptron
 
 ################################################################################s
 
