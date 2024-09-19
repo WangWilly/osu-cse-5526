@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 
-from lab1.activation_funcs.sigmoid import SIGMOID_FUNC
+from lab1.activation_funcs.const import SIGMOID_FUNC
 from lab1.cost.mse import COST_FUNC
 
 ################################################################################
@@ -20,7 +20,7 @@ class Perceptron:
         hidden_size: int,
         output_size: int,
         acti_func_pair: tuple[SIGMOID_FUNC, SIGMOID_FUNC],
-        cost_func: COST_FUNC,
+        cost_func_pair: tuple[COST_FUNC, COST_FUNC],
     ) -> None:
         np.random.seed(RANDOM_SEED)
 
@@ -42,7 +42,8 @@ class Perceptron:
         self.acti_func = acti_func_pair[0]
         self.acti_func_derivative = acti_func_pair[1]
 
-        self.cost_func = cost_func
+        self.cost_func = cost_func_pair[0]
+        self.cost_func_derivative = cost_func_pair[1]
 
         self.cost_hist: list[float] = []
 
@@ -62,7 +63,7 @@ class Perceptron:
     def backward(
         self, m: int, X: np.ndarray, Y: np.ndarray, Y1: np.ndarray, Y2: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray]:
-        delta2 = (Y - Y2) * self.acti_func_derivative(Y2)
+        delta2 = self.cost_func_derivative(Y, Y2) * self.acti_func_derivative(Y2)
         Y1_bias: np.ndarray = np.c_[Y1, np.ones(Y1.shape[0])]
         dW2 = np.dot(Y1_bias.T, delta2) / m
 

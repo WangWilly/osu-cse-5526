@@ -1,7 +1,7 @@
 import argparse
 
-from activation_funcs.sigmoid import sigmoid_pair
-from cost.mse import cost
+from activation_funcs.sigmoid import acti_pair
+from cost.mse import cost_pair
 from dataset.is_odd import X, Y
 from perceptron_helper.two_layers import Perceptron
 
@@ -37,7 +37,7 @@ def main():
     print(f"Epochs: {args.epochs}")
 
     # Training
-    perceptron = Perceptron(input_size, hidden_size, output_size, sigmoid_pair, cost)
+    perceptron = Perceptron(input_size, hidden_size, output_size, acti_pair, cost_pair)
     perceptron.train(X, Y, args.learning_rate, args.epochs)
 
     ############################################################################

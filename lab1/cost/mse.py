@@ -1,14 +1,17 @@
-from typing import Callable
-
 import numpy as np
 
-################################################################################
-
-COST_FUNC = Callable[[np.ndarray, np.ndarray], float]
+from .const import COST_FUNC
 
 ################################################################################
 # Mean Squared Error
 
 
-def cost(Y: np.ndarray, Y_hat: np.ndarray) -> float:
-    return np.sum((Y - Y_hat) ** 2) / 2.0
+def cost(y: np.ndarray, y_hat: np.ndarray) -> float:
+    return np.sum((y - y_hat) ** 2) / 2.0
+
+
+def cost_derivative(y: np.ndarray, y_hat: np.ndarray) -> np.ndarray:
+    return y - y_hat
+
+
+cost_pair: tuple[COST_FUNC, COST_FUNC] = (cost, cost_derivative)
