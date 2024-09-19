@@ -1,7 +1,8 @@
 import numpy as np
+from tqdm import tqdm
+
 from lab1.activation_funcs.sigmoid import SIGMOID_FUNC
 from lab1.cost.mse import COST_FUNC
-from tqdm import tqdm
 
 ################################################################################
 
@@ -11,16 +12,32 @@ NEURON_UPPER_BOUND = 1.0
 
 ################################################################################
 
+
 class Perceptron:
-    def __init__(self, input_size: int, hidden_size: int, output_size: int,  acti_func_pair: tuple[SIGMOID_FUNC, SIGMOID_FUNC], cost_func: COST_FUNC) -> None:
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        output_size: int,
+        acti_func_pair: tuple[SIGMOID_FUNC, SIGMOID_FUNC],
+        cost_func: COST_FUNC,
+    ) -> None:
         np.random.seed(RANDOM_SEED)
 
-        self.input_size = input_size 
+        self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
 
-        self.W1 = np.random.uniform(NEURON_LOWER_BOUND, NEURON_UPPER_BOUND, (self.input_size + 1, self.hidden_size))  # Add bias
-        self.W2 = np.random.uniform(NEURON_LOWER_BOUND, NEURON_UPPER_BOUND, (self.hidden_size + 1, self.output_size)) # Add bias
+        self.W1 = np.random.uniform(
+            NEURON_LOWER_BOUND,
+            NEURON_UPPER_BOUND,
+            (self.input_size + 1, self.hidden_size),
+        )  # Add bias
+        self.W2 = np.random.uniform(
+            NEURON_LOWER_BOUND,
+            NEURON_UPPER_BOUND,
+            (self.hidden_size + 1, self.output_size),
+        )  # Add bias
 
         self.acti_func = acti_func_pair[0]
         self.acti_func_derivative = acti_func_pair[1]
@@ -28,8 +45,10 @@ class Perceptron:
         self.cost_func = cost_func
 
         self.cost_hist: list[float] = []
-    
-    def forward(self, X: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+
+    def forward(
+        self, X: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         X_bias = np.c_[X, np.ones(X.shape[0])]
         V1 = np.dot(X_bias, self.W1)
         Y1 = self.acti_func(V1)
@@ -40,7 +59,9 @@ class Perceptron:
 
         return V1, Y1, V2, Y2
 
-    def backward(self, m: int, X: np.ndarray, Y: np.ndarray, Y1: np.ndarray, Y2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    def backward(
+        self, m: int, X: np.ndarray, Y: np.ndarray, Y1: np.ndarray, Y2: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         delta2 = (Y - Y2) * self.acti_func_derivative(Y2)
         Y1_bias: np.ndarray = np.c_[Y1, np.ones(Y1.shape[0])]
         dW2 = np.dot(Y1_bias.T, delta2) / m
@@ -52,11 +73,15 @@ class Perceptron:
 
         return dW1, dW2
 
-    def update_parameters(self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float) -> None:
+    def update_parameters(
+        self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float
+    ) -> None:
         self.W1 += learning_rate * dW1
         self.W2 += learning_rate * dW2
 
-    def train(self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int) -> None:
+    def train(
+        self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int
+    ) -> None:
         m = X.shape[0]
         epBar = tqdm(range(epochs))
 

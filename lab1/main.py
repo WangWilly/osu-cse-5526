@@ -1,16 +1,21 @@
 import argparse
-from perceptron_helper.two_layers import Perceptron
-from cost.mse import cost
+
 from activation_funcs.sigmoid import sigmoid_pair
+from cost.mse import cost
 from dataset.is_odd import X, Y
+from perceptron_helper.two_layers import Perceptron
 
 ################################################################################s
 
+
 def argument_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="lab1")
-    parser.add_argument("--learning_rate", type=float, default=0.5, help="Learning rate")
+    parser.add_argument(
+        "--learning_rate", type=float, default=0.5, help="Learning rate"
+    )
     parser.add_argument("--epochs", type=int, default=1000000, help="Number of epochs")
     return parser.parse_args()
+
 
 def main():
     # Setups
@@ -38,6 +43,7 @@ def main():
 
     # Print parameters
     perceptron.print_param()
+
 
 ################################################################################
 
