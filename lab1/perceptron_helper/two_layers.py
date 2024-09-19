@@ -6,8 +6,8 @@ from tqdm import tqdm
 ################################################################################
 
 RANDOM_SEED = 8787
-NEURON_LOWER_BOUND = -1
-NEURON_UPPER_BOUND = 1
+NEURON_LOWER_BOUND = -1.0
+NEURON_UPPER_BOUND = 1.0
 
 ################################################################################
 
@@ -40,7 +40,7 @@ class Perceptron:
 
         return V1, Y1, V2, Y2
 
-    def backward(self, m: int, X: np.ndarray, Y: np.ndarray, V1: np.ndarray, Y1: np.ndarray, Y2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    def backward(self, m: int, X: np.ndarray, Y: np.ndarray, Y1: np.ndarray, Y2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         delta2 = (Y - Y2) * self.acti_func_derivative(Y2)
         Y1_bias: np.ndarray = np.c_[Y1, np.ones(Y1.shape[0])]
         dW2 = np.dot(Y1_bias.T, delta2) / m
@@ -53,31 +53,26 @@ class Perceptron:
         return dW1, dW2
 
     def update_parameters(self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float) -> None:
-        self.W1 -= learning_rate * dW1
-        self.W2 -= learning_rate * dW2
+        self.W1 += learning_rate * dW1
+        self.W2 += learning_rate * dW2
 
-    def train(self, X: np.ndarray, Y: np.ndarray, learning_rate: float, iterations: int) -> None:
+    def train(self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int) -> None:
         m = X.shape[0]
-        iters = tqdm(range(iterations))
+        epBar = tqdm(range(epochs))
 
-        for _ in iters:
-            V1, Y1, _, Y2 = self.forward(X)
+        for _ in epBar:
+            _, Y1, _, Y2 = self.forward(X)
             cost = self.cost_func(Y, Y2)
             self.cost_hist.append(cost)
+            epBar.set_postfix_str("Cost: %.16f" % cost)
 
-            dW1, dW2 = self.backward(m, X, Y, V1, Y1, Y2)
+            dW1, dW2 = self.backward(m, X, Y, Y1, Y2)
             self.update_parameters(dW1, dW2, learning_rate)
-
-            iters.set_postfix(ordered_dict={"Cost": cost})
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         _, _, _, Y_hat = self.forward(X)
         return Y_hat
-    
-    def print_history(self) -> None:
-        for i, cost in enumerate(self.cost_hist):
-            print(f"Iteration {i}, Cost: {cost}")
 
     def print_param(self) -> None:
-        print("W1:", self.W1)
-        print("W2:", self.W2)
+        print("W1: \n", self.W1)
+        print("W2: \n", self.W2)
