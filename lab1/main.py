@@ -1,4 +1,6 @@
 import argparse
+import os
+import matplotlib.pyplot as plt
 # TODO: torch is slower than numpy ???
 # import torch
 
@@ -9,6 +11,10 @@ from np_mod.perceptron_helper.two_layers import Perceptron
 
 ################################################################################s
 
+this_dir = os.path.dirname(os.path.abspath(__file__))
+output_dir = os.path.join(this_dir, "output")
+
+################################################################################s
 
 def argument_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="lab1")
@@ -61,6 +67,24 @@ def main():
 
     # Print parameters
     perceptron.print_param()
+
+    # Plot cost history
+    plt.plot(perceptron.cost_hist)
+    plt.xlabel("Epoch")
+    plt.ylabel("Cost")
+    plt.yscale("log")
+    plt.title("lr = " + str(args.learning_rate) + ", epochs = " + str(args.epochs) + ", momentum = " + str(args.momentum))
+
+    # Save plot
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    img_name = "lr_" + str(args.learning_rate) + "_epochs_" + str(args.epochs) + "_momentum_" + str(args.momentum) + ".jpg"
+    img_path = os.path.join(output_dir, img_name)
+    plt.savefig(img_path, format='jpeg')
+
+    # Show the plot
+    plt.show()
 
 
 ################################################################################
