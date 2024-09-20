@@ -1,4 +1,6 @@
 import argparse
+# TODO: torch is slower than numpy ???
+# import torch
 
 from np_mod.activation_funcs.sigmoid import acti_pair
 from np_mod.cost.mse import cost_pair
@@ -19,6 +21,9 @@ def argument_parser() -> argparse.Namespace:
 
 def main():
     # Setups
+    # TODO: torch is slower than numpy ???
+    # mps_device = torch.device("mps")
+
     args = argument_parser()
 
     input_size = 4
@@ -38,6 +43,8 @@ def main():
 
     # Training
     perceptron = Perceptron(input_size, hidden_size, output_size, acti_pair, cost_pair)
+    # TODO: torch is slower than numpy ???
+    # perceptron.to(mps_device)
     perceptron.train(X, Y, args.learning_rate, args.epochs)
 
     ############################################################################
