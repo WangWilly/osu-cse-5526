@@ -271,3 +271,123 @@ W2:
  [ 19.22429196]]
 ```
 
+```text
+(osu-cse-5526-py3.12) (⎈|lab6:group-mitglied) ~/Projects/osu/osu-cse-5526/ [master] python lab1/main.py --learning_rate 0.4 --momentum 0.9 --epochs 5000000 
+Input size: 4
+Hidden size: 4
+Output size: 1
+Learning rate: 0.4
+Epochs: 5000000
+Momentum: 0.9
+  2%|█▋                                                                                      | 98794/5000000 [00:08<07:14, 11276.82it/s, Cost: 0.8000003825569797]/Users/willywangkaa/Projects/osu/osu-cse-5526/lab1/np_mod/activation_funcs/sigmoid.py:9: RuntimeWarning: overflow encountered in exp
+  return 1.0 / (1.0 + np.exp(-y))
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000000/5000000 [07:18<00:00, 11391.38it/s, Cost: 0.8000000000341927]
+Prediction: [[8.33368377e-07]], Actual: [0]
+Prediction: [[0.80000007]], Actual: [1]
+Prediction: [[0.80000007]], Actual: [1]
+Prediction: [[0.79999752]], Actual: [0]
+Prediction: [[0.79999897]], Actual: [1]
+Prediction: [[8.33488519e-07]], Actual: [0]
+Prediction: [[8.33488543e-07]], Actual: [0]
+Prediction: [[0.79999992]], Actual: [1]
+Prediction: [[0.79999897]], Actual: [1]
+Prediction: [[8.3348852e-07]], Actual: [0]
+Prediction: [[8.33488544e-07]], Actual: [0]
+Prediction: [[0.79999992]], Actual: [1]
+Prediction: [[0.80000138]], Actual: [0]
+Prediction: [[0.79999882]], Actual: [1]
+Prediction: [[0.79999882]], Actual: [1]
+Prediction: [[8.33492569e-07]], Actual: [0]
+W1: 
+ [[ 9.24951606e-06  4.04517285e+04  1.68139146e+04 -5.73425246e+04]
+ [ 9.24951607e-06  4.04517285e+04  1.68139145e+04 -5.73425292e+04]
+ [-9.81821245e-06 -4.04556334e+04 -1.68106840e+04  5.73158073e+04]
+ [-9.81821234e-06 -4.04556340e+04 -1.68106889e+04  5.73157891e+04]
+ [-1.49064907e+00 -1.66400886e+01  1.04848131e+01 -4.02627088e+01]]
+W2: 
+ [[ 10.83259061]
+ [ 15.38391103]
+ [  5.43734988]
+ [ 20.82129878]
+ [-21.42628167]]
+```
+
+```text
+(osu-cse-5526-py3.12) (⎈|lab6:group-mitglied) ~/Projects/osu/osu-cse-5526/ [master] python lab1/main.py --learning_rate 0.45 --momentum 0.9 --epochs 5000000
+Input size: 4
+Hidden size: 4
+Output size: 1
+Learning rate: 0.45
+Epochs: 5000000
+Momentum: 0.9
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000000/5000000 [07:14<00:00, 11520.25it/s, Cost: 1.9999898717494138]
+Prediction: [[0.50006769]], Actual: [0]
+Prediction: [[0.50008545]], Actual: [1]
+Prediction: [[0.50008566]], Actual: [1]
+Prediction: [[0.50008301]], Actual: [0]
+Prediction: [[0.49992115]], Actual: [1]
+Prediction: [[0.49991895]], Actual: [0]
+Prediction: [[0.49991894]], Actual: [0]
+Prediction: [[0.49991671]], Actual: [1]
+Prediction: [[0.49992115]], Actual: [1]
+Prediction: [[0.49991895]], Actual: [0]
+Prediction: [[0.49991894]], Actual: [0]
+Prediction: [[0.49991671]], Actual: [1]
+Prediction: [[0.50008305]], Actual: [0]
+Prediction: [[0.50008116]], Actual: [1]
+Prediction: [[0.50008096]], Actual: [1]
+Prediction: [[0.50007907]], Actual: [0]
+W1: 
+ [[-6.80697961e+00  1.98681914e-01 -1.28011086e-01 -6.93772330e+00]
+ [-6.97785001e+00  1.98681444e-01 -1.28010659e-01 -5.84893993e+00]
+ [-9.15095711e+00  2.74593474e-04  1.06232085e-04 -1.75169873e+01]
+ [-9.15382418e+00  3.99842043e-04  2.51569816e-05 -1.79908696e+01]
+ [-1.15264002e+01  5.92193585e+00  5.81811137e+00 -1.83142120e+01]]
+W2: 
+ [[-8.26490454]
+ [-9.2846595 ]
+ [-9.4038077 ]
+ [-7.88633039]
+ [18.63612647]]
+```
+
+```text
+(osu-cse-5526-py3.12) (⎈|lab6:group-mitglied) ~/Projects/osu/osu-cse-5526/ [master] python lab1/main.py --learning_rate 0.50 --momentum 0.9 --epochs 5000000
+Input size: 4
+Hidden size: 4
+Output size: 1
+Learning rate: 0.5
+Epochs: 5000000
+Momentum: 0.9
+  2%|█▌                                                                                      | 85502/5000000 [00:07<07:12, 11354.63it/s, Cost: 0.8000309919737121]/Users/willywangkaa/Projects/osu/osu-cse-5526/lab1/np_mod/activation_funcs/sigmoid.py:9: RuntimeWarning: overflow encountered in exp
+  return 1.0 / (1.0 + np.exp(-y))
+100%|██████████████████████████████████████████████████████████████████████████████████████| 5000000/5000000 [07:22<00:00, 11290.99it/s, Cost: 0.8000005558669778]
+Prediction: [[7.17820498e-07]], Actual: [0]
+Prediction: [[0.79999939]], Actual: [1]
+Prediction: [[0.79999943]], Actual: [1]
+Prediction: [[0.79999939]], Actual: [0]
+Prediction: [[0.80000192]], Actual: [1]
+Prediction: [[7.08405057e-07]], Actual: [0]
+Prediction: [[7.08594096e-07]], Actual: [0]
+Prediction: [[0.79999939]], Actual: [1]
+Prediction: [[0.80000191]], Actual: [1]
+Prediction: [[7.08462385e-07]], Actual: [0]
+Prediction: [[7.08655292e-07]], Actual: [0]
+Prediction: [[0.79999939]], Actual: [1]
+Prediction: [[0.80000038]], Actual: [0]
+Prediction: [[0.79999743]], Actual: [1]
+Prediction: [[0.79999745]], Actual: [1]
+Prediction: [[7.06308994e-07]], Actual: [0]
+W1: 
+ [[-8.73955206e+02  5.22704164e+04 -5.14218824e+04  4.18606475e-01]
+ [-8.73934526e+02  5.22702498e+04 -5.14219402e+04  4.16582702e-01]
+ [ 8.75377832e+02 -5.22723427e+04  5.14174007e+04  4.97139312e+00]
+ [ 8.75444476e+02 -5.22713169e+04  5.14164567e+04  8.46563113e+00]
+ [ 3.01682498e+00 -1.77482289e+01 -1.85502327e+01  1.18759797e+01]]
+W2: 
+ [[-0.36585826]
+ [15.18458382]
+ [15.55045433]
+ [-6.12585331]
+ [-7.67245223]]
+```
