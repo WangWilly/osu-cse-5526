@@ -7,7 +7,6 @@ sys.path.append(os.path.abspath(os.path.join(this_dir, "..")))
 ################################################################################
 
 import argparse
-import os
 
 import matplotlib.pyplot as plt
 
@@ -22,7 +21,6 @@ from lab1.np_mod.perceptron_helper.two_layers import Perceptron
 
 ################################################################################
 
-this_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = os.path.join(this_dir, "output")
 
 ################################################################################s

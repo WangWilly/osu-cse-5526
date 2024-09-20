@@ -6,7 +6,6 @@ from lab1.np_mod.cost.const import Cost
 
 ################################################################################
 
-RANDOM_SEED = 8787
 NEURON_LOWER_BOUND = -1.0
 NEURON_UPPER_BOUND = 1.0
 
@@ -22,7 +21,6 @@ class Perceptron:
         acti: Activation,
         cost: Cost,
     ) -> None:
-        np.random.seed(RANDOM_SEED)
 
         self.input_size = input_size
         self.hidden_size = hidden_size
