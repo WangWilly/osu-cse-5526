@@ -1,13 +1,15 @@
 import argparse
 import os
-import matplotlib.pyplot as plt
-# TODO: torch is slower than numpy ???
-# import torch
 
+import matplotlib.pyplot as plt
 from np_mod.activation_funcs.sigmoid import acti_pair
 from np_mod.cost.mse import cost_pair
 from np_mod.dataset.is_odd import X, Y
 from np_mod.perceptron_helper.two_layers import Perceptron
+
+# TODO: torch is slower than numpy ???
+# import torch
+
 
 ################################################################################s
 
@@ -15,6 +17,7 @@ this_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = os.path.join(this_dir, "output")
 
 ################################################################################s
+
 
 def argument_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="lab1")
@@ -73,15 +76,30 @@ def main():
     plt.xlabel("Epoch")
     plt.ylabel("Cost")
     plt.yscale("log")
-    plt.title("lr = " + str(args.learning_rate) + ", epochs = " + str(args.epochs) + ", momentum = " + str(args.momentum))
+    plt.title(
+        "lr = "
+        + str(args.learning_rate)
+        + ", epochs = "
+        + str(args.epochs)
+        + ", momentum = "
+        + str(args.momentum)
+    )
 
     # Save plot
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    img_name = "lr_" + str(args.learning_rate) + "_epochs_" + str(args.epochs) + "_momentum_" + str(args.momentum) + ".jpg"
+    img_name = (
+        "lr_"
+        + str(args.learning_rate)
+        + "_epochs_"
+        + str(args.epochs)
+        + "_momentum_"
+        + str(args.momentum)
+        + ".jpg"
+    )
     img_path = os.path.join(output_dir, img_name)
-    plt.savefig(img_path, format='jpeg')
+    plt.savefig(img_path, format="jpeg")
 
     # Show the plot
     plt.show()

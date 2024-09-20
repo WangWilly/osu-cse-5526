@@ -26,7 +26,7 @@ class Perceptron:
         self.hidden_size = hidden_size
         self.output_size = output_size
 
-         # Add bias
+        # Add bias
         self.W1 = torch.rand(self.input_size + 1, self.hidden_size) * 2.0 - 1.0
         # Add bias
         self.W2 = torch.rand(self.hidden_size + 1, self.output_size) * 2.0 - 1.0
@@ -57,19 +57,28 @@ class Perceptron:
         return V1, Y1, V2, Y2
 
     def backward(
-        self, m: int, X: torch.Tensor, Y: torch.Tensor, Y1: torch.Tensor, Y2: torch.Tensor
+        self,
+        m: int,
+        X: torch.Tensor,
+        Y: torch.Tensor,
+        Y1: torch.Tensor,
+        Y2: torch.Tensor,
     ) -> tuple[torch.Tensor, torch.Tensor]:
         # Arrange
         device = self.W1.device
 
         # Resolve
         delta2 = self.cost_func_derivative(Y, Y2) * self.acti_func_derivative(Y2)
-        Y1_bias: torch.Tensor = torch.cat((Y1, torch.ones(Y1.shape[0], 1, device=device)), dim=1)
+        Y1_bias: torch.Tensor = torch.cat(
+            (Y1, torch.ones(Y1.shape[0], 1, device=device)), dim=1
+        )
         dW2 = torch.matmul(Y1_bias.T, delta2) / m
 
         sumPropFrom2 = torch.matmul(delta2, self.W2[:-1].T)
         delta1 = sumPropFrom2 * self.acti_func_derivative(Y1)
-        X_bias: torch.Tensor = torch.cat((X, torch.ones(X.shape[0], 1, device=device)), dim=1)
+        X_bias: torch.Tensor = torch.cat(
+            (X, torch.ones(X.shape[0], 1, device=device)), dim=1
+        )
         dW1 = torch.matmul(X_bias.T, delta1) / m
 
         return dW1, dW2

@@ -75,13 +75,22 @@ class Perceptron:
         return dW1, dW2
 
     def update_parameters(
-        self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float, momentum_alpha: float
+        self,
+        dW1: np.ndarray,
+        dW2: np.ndarray,
+        learning_rate: float,
+        momentum_alpha: float,
     ) -> None:
         self.W1 += learning_rate / (1 - momentum_alpha) * dW1
         self.W2 += learning_rate / (1 - momentum_alpha) * dW2
 
     def train(
-        self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int, momentum_alpha: float = 0.0
+        self,
+        X: np.ndarray,
+        Y: np.ndarray,
+        learning_rate: float,
+        epochs: int,
+        momentum_alpha: float = 0.0,
     ) -> None:
         m = X.shape[0]
         epBar = tqdm(range(epochs))
