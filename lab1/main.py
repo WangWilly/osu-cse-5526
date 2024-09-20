@@ -1,17 +1,26 @@
+import os
+import sys
+
+this_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.abspath(os.path.join(this_dir, "..")))
+
+################################################################################
+
 import argparse
 import os
 
 import matplotlib.pyplot as plt
-from np_mod.activation_funcs.sigmoid import acti_pair
-from np_mod.cost.mse import cost_pair
-from np_mod.dataset.is_odd import X, Y
-from np_mod.perceptron_helper.two_layers import Perceptron
+
+from lab1.np_mod.activation_funcs.sigmoid import Sigmoid
+from lab1.np_mod.cost.mse import MSE
+from lab1.np_mod.dataset.is_odd import X, Y
+from lab1.np_mod.perceptron_helper.two_layers import Perceptron
 
 # TODO: torch is slower than numpy ???
 # import torch
 
 
-################################################################################s
+################################################################################
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = os.path.join(this_dir, "output")
@@ -53,7 +62,7 @@ def main():
     print(f"Momentum: {args.momentum}")
 
     # Training
-    perceptron = Perceptron(input_size, hidden_size, output_size, acti_pair, cost_pair)
+    perceptron = Perceptron(input_size, hidden_size, output_size, Sigmoid(), MSE())
     # TODO: torch is slower than numpy ???
     # perceptron.to(mps_device)
     perceptron.train(X, Y, args.learning_rate, args.epochs, args.momentum)

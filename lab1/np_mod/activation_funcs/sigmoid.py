@@ -1,6 +1,6 @@
-from typing import Callable
-
 import numpy as np
+
+from .const import Activation
 
 ################################################################################
 
@@ -13,4 +13,12 @@ def acti_derivative(y: np.ndarray) -> np.ndarray:
     return acti(y) * (1.0 - acti(y))
 
 
-acti_pair: Callable[[np.ndarray], np.ndarray] = (acti, acti_derivative)
+################################################################################
+
+
+class Sigmoid(Activation):
+    def forward(self, y: np.ndarray) -> np.ndarray:
+        return acti(y)
+
+    def backward(self, y: np.ndarray) -> np.ndarray:
+        return acti_derivative(y)
