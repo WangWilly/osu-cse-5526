@@ -10,6 +10,7 @@ python = "^3.12"
 numpy = "^2.1.1"
 tqdm = "^4.66.5"
 torch = "^2.4.1"
+matplotlib = "^3.9.2"
 
 
 [tool.poetry.group.dev.dependencies]
