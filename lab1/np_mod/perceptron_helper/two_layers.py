@@ -75,13 +75,13 @@ class Perceptron:
         return dW1, dW2
 
     def update_parameters(
-        self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float
+        self, dW1: np.ndarray, dW2: np.ndarray, learning_rate: float, momentum_alpha: float
     ) -> None:
-        self.W1 += learning_rate * dW1
-        self.W2 += learning_rate * dW2
+        self.W1 += learning_rate / (1 - momentum_alpha) * dW1
+        self.W2 += learning_rate / (1 - momentum_alpha) * dW2
 
     def train(
-        self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int
+        self, X: np.ndarray, Y: np.ndarray, learning_rate: float, epochs: int, momentum_alpha: float = 0.0
     ) -> None:
         m = X.shape[0]
         epBar = tqdm(range(epochs))
@@ -93,7 +93,7 @@ class Perceptron:
             epBar.set_postfix_str("Cost: %.16f" % cost)
 
             dW1, dW2 = self.backward(m, X, Y, Y1, Y2)
-            self.update_parameters(dW1, dW2, learning_rate)
+            self.update_parameters(dW1, dW2, learning_rate, momentum_alpha)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         _, _, _, Y_hat = self.forward(X)
