@@ -10,3 +10,10 @@
 ### TODO
 - [] Use GPU to accelerate the computation of the matrix multiplication.
 - [] Make cost function and gradient function as classes.
+
+## Lab 2
+
+- [instructions](lab2/Lab-2.pdf)
+- [report](lab2/report.md)
+- [history log](lab2/hist_logs.md)
+- [reference](docs/lab2.md)

@@ -272,3 +272,84 @@ This implementation initializes the centroids, assigns clusters, updates the cen
 2. K-Means Clustering in Python: A Practical Guide – Real Python. https://realpython.com/k-means-clustering-python/.
 3. Coding K-Means Clustering using Python and NumPy. https://dev.to/sajal2692/coding-k-means-clustering-using-python-and-numpy-fg1.
 4. Introduction to k-Means Clustering with scikit-learn in Python. https://www.datacamp.com/tutorial/k-means-clustering-python.
+
+## Training an RBF Neural Network with Gradient Descent in Python
+
+Updating the weights in an RBF neural network typically involves using a method like gradient descent or a closed-form solution such as the pseudo-inverse. Here's how you can implement weight updates using gradient descent:
+
+### 1. **Define the Loss Function**
+First, define the Mean Squared Error (MSE) loss function:
+
+```python
+def mse_loss(y_true, y_pred):
+    return np.mean((y_true - y_pred) ** 2)
+```
+
+### 2. **Compute the Gradient**
+Calculate the gradient of the loss function with respect to the weights:
+
+```python
+def compute_gradient(G, y_true, y_pred):
+    return -2 * G.T.dot(y_true - y_pred) / y_true.size
+```
+
+### 3. **Update the Weights**
+Update the weights using the gradient descent rule:
+
+```python
+def update_weights(weights, gradient, learning_rate):
+    return weights - learning_rate * gradient
+```
+
+### 4. **Train the Network with Gradient Descent**
+Combine these steps to train the RBF network using gradient descent:
+
+```python
+def train_rbf_network_gd(X, y, k, learning_rate=0.01, max_iters=1000, tol=1e-6):
+    centers = initialize_centers_kmeans(X, k)
+    spreads = initialize_spreads_kmeans(centers)
+    G = compute_rbf_layer(X, centers, spreads)
+    weights = np.random.randn(G.shape[1])
+    
+    for i in range(max_iters):
+        y_pred = G.dot(weights)
+        loss = mse_loss(y, y_pred)
+        gradient = compute_gradient(G, y, y_pred)
+        new_weights = update_weights(weights, gradient, learning_rate)
+        
+        if np.linalg.norm(new_weights - weights) < tol:
+            break
+        
+        weights = new_weights
+    
+    return centers, spreads, weights
+```
+
+### Example Usage
+Here's how you can use the gradient descent method to train and test the RBF network:
+
+```python
+# Example data
+X_train = np.array([[1, 2], [2, 3], [3, 4], [4, 5]])
+y_train = np.array([1, 2, 3, 4])
+
+# Train the network
+k = 2  # Number of RBF neurons
+learning_rate = 0.01
+centers, spreads, weights = train_rbf_network_gd(X_train, y_train, k, learning_rate)
+
+# Make predictions
+X_test = np.array([[1.5, 2.5], [3.5, 4.5]])
+G_test = compute_rbf_layer(X_test, centers, spreads)
+predictions = G_test.dot(weights)
+print(predictions)
+```
+
+This implementation uses gradient descent to update the weights of the RBF network. The `train_rbf_network_gd` function initializes the centers using k-means, computes the RBF layer output, and iteratively updates the weights until convergence.
+
+### Sources
+1. What are radial basis function neural networks? - GeeksforGeeks. https://www.geeksforgeeks.org/what-are-radial-basis-function-neural-networks/.
+2. How to Train a Machine Learning Radial Basis Function Network Using C#. https://visualstudiomagazine.com/articles/2020/03/19/train-radial-basis-function.aspx.
+3. Introduction to Radial Bias Function Networks. https://www.aiplusinfo.com/blog/introduction-to-radial-bias-function-networks/.
+4. An online adjusting RBF neural network for nonlinear system modeling. https://link.springer.com/article/10.1007/s10489-021-03106-7.
+5. Training Radial Basis Function Networks - Computational Intelligence. https://www.computational-intelligence.eu/cibook_media/Downloads/NN/NN_11_RBF_Training.pdf.
