@@ -1,8 +1,7 @@
 import numpy as np
-
+from .centroids_const import CENTROIDS_INIT_FUNC
 
 ################################################################################
-
 
 def kmeans(X: np.ndarray, k: int, max_iters: int = 100, tol: float = 1e-4) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -38,6 +37,18 @@ def kmeans(X: np.ndarray, k: int, max_iters: int = 100, tol: float = 1e-4) -> tu
 
     return centroids, clusters
 
+
+def kmeans_centroids(k: int, max_iters: int = 100, tol: float = 1e-4) -> CENTROIDS_INIT_FUNC:
+    def f(X: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        centroids, _ = kmeans(X, k, max_iters, tol)
+        
+        # spread is varience of the distance between centroids
+        d_max = np.max([np.linalg.norm(c1-c2) for c1 in centroids for c2 in centroids])
+        spreads = np.repeat(d_max / np.sqrt(2*len(centroids)), len(centroids))
+
+        return centroids, spreads
+
+    return f
 
 ################################################################################
 

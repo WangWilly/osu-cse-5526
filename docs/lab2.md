@@ -1,4 +1,4 @@
-# Lab 2: Radial Basis Function Network (1)
+# Lab 2: Radial Basis Function Network
 
 ## Implementation of Radial Basis Function Network (RBFN) in Python using NumPy
 
