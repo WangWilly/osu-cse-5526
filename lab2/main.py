@@ -10,7 +10,7 @@ import argparse
 
 import matplotlib.pyplot as plt
 
-from lab1.np_mod.cost.mse import MSE
+from lab2.np_mod.cost.mse import MSE
 from lab2.np_mod.alg.kmeans import kmeans_centroids
 from lab2.np_mod.gen_data import lab2_noised_target_output, lab2_random_input
 from lab2.np_mod.perceptron_helper.rbf_2_layers import Perceptron

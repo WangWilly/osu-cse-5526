@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 
-from lab1.np_mod.cost.const import Cost
+from lab2.np_mod.cost.const import Cost
 from lab2.np_mod.alg.centroids_const import CENTROIDS_INIT_FUNC
 
 ################################################################################
