@@ -1,0 +1,1 @@
+- [Can a neural network with linear activation functions produce a connection of linear functions?](https://ai.stackexchange.com/questions/3753/can-a-neural-network-with-linear-activation-functions-produce-a-connection-of-li)
