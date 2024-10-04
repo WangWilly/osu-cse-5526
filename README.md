@@ -8,8 +8,8 @@
 - [result2](lab1/result2.md)
 
 ### TODO
-- [] Use GPU to accelerate the computation of the matrix multiplication.
-- [] Make cost function and gradient function as classes.
+- [ ] Use GPU to accelerate the computation of the matrix multiplication.
+- [x] Make cost function and gradient function as classes.
 
 ## Lab 2
 
