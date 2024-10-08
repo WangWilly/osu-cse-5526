@@ -56,14 +56,14 @@ class Perceptron:
         return V1, Y1, V2, Y2
 
     def backward(
-        self, m: int, X: np.ndarray, Y: np.ndarray, Y1: np.ndarray, Y2: np.ndarray
+        self, m: int, X: np.ndarray, Y: np.ndarray, V1: np.ndarray, Y1: np.ndarray, V2: np.ndarray, Y2: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray]:
-        delta2 = self.cost.backward(Y, Y2) * self.acti.backward(Y2)
+        delta2 = self.cost.backward(Y, Y2) * self.acti.backward(V2)
         Y1_bias: np.ndarray = np.c_[Y1, np.ones(Y1.shape[0])]
         dW2 = np.dot(Y1_bias.T, delta2) / m
 
         sumPropFrom2 = np.dot(delta2, self.W2[:-1].T)
-        delta1 = sumPropFrom2 * self.acti.backward(Y1)
+        delta1 = sumPropFrom2 * self.acti.backward(V1)
         X_bias: np.ndarray = np.c_[X, np.ones(X.shape[0])]
         dW1 = np.dot(X_bias.T, delta1) / m
 
@@ -91,12 +91,12 @@ class Perceptron:
         epBar = tqdm(range(epochs))
 
         for _ in epBar:
-            _, Y1, _, Y2 = self.forward(X)
+            V1, Y1, V2, Y2 = self.forward(X)
             cost = self.cost.forward(Y, Y2)
             self.cost_hist.append(cost)
             epBar.set_postfix_str("Cost: %.16f" % cost)
 
-            dW1, dW2 = self.backward(m, X, Y, Y1, Y2)
+            dW1, dW2 = self.backward(m, X, Y, V1, Y1, V2, Y2)
             self.update_parameters(dW1, dW2, learning_rate, momentum_alpha)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
