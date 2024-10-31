@@ -17,3 +17,23 @@
 - [report](lab2/report.md)
 - [history log](lab2/hist_logs.md)
 - [reference](docs/lab2.md)
+
+## Lab 3
+
+- [instructions](lab3/Lab-3.pdf)
+
+### Install LibSVM
+
+```bash
+# on Mac
+brew install libsvm
+```
+
+### Run
+
+```bash
+./scripts/lab3-1-choose-c.sh
+./scripts/lab3-2-half-sampling.sh
+```
+
+all the results are in `lab3/dist` folder.
