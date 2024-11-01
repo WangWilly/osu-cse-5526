@@ -21,6 +21,8 @@
 ## Lab 3
 
 - [instructions](lab3/Lab-3.pdf)
+- [report](lab3/report.md)
+- [history log](lab3/hist_logs.md)
 
 ### Install LibSVM
 
